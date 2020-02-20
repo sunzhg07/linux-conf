@@ -1,0 +1,10 @@
+#%Module -*- tcl -*-
+#
+# gnu toolchains
+#
+conflict hdf5-intel    
+conflict openmpi-intel 
+
+module load gcc-9.2
+module load  hdf5-gnu
+module load  openmpi-gnu

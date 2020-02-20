@@ -1,0 +1,41 @@
+wget http://www.netgull.com/gcc/releases/gcc-9.2.0/gcc-9.2.0.tar.gz
+tar -xzvf gcc-9.2.0.tar.gz
+cd gcc-9.2.0
+contrib/download_prerequisites
+mkdir build
+cd build
+../configure --prefix=/scratch/zhb/software/DEV/GNU/gcc --mandir=/scratch/zhb/software/DEV/GNU/gcc/man --infodir=/scratch/zhb/software/DEV/GNU/gcc/info --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release -enable-languages=c,c++,fortran  --disable-multilib --build=x86_64-redhat-linux
+
+make 
+make install
+
+
+wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
+tar -xzvf openmpi-4.0.2.tar.gz
+cd openmpi-4.0.2
+mkdir build
+cd build/
+../configure --prefix=/scratch/zhb/software/DEV/GNU/openmpi CFLAGS=-m64 CXXFLAGS=-m64 FFLAGS=-m64 FCFLAGS=-m64 
+mkdir build_intel
+cd build_intel/
+../configure  --prefix=/scratch/zhb/software/DEV/INTEL/openmpi CC=icc CXX=icpc F77=ifort FC=ifort
+
+
+wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF5_1_10_6/source/hdf5-1.10.6.tar.gz
+ tar -xzvf hdf5-1.10.6.tar.gz 
+ cd hdf5-1.10.6
+mkdir build
+cd build/
+../configure --prefix=/scratch/zhb/software/DEV/GNU/hdf5 --enable-fortran      --enable-hl      --enable-shared      --enable-static      --enable-parallel      --with-zlib CC=mpicc      CXX=mpicxx      FC=mpif9
+mkdir build_intel
+cd build_intel/
+../configure --prefix=/scratch/zhb/software/DEV/INTEL/hdf5 --enable-fortran      --enable-hl      --enable-shared      --enable-static      --enable-parallel      --with-zlib CC=mpicc      CXX=mpicxx      FC=mpif90
+
+
+ wget https://ayera.dl.sourceforge.net/project/env2/env2
+perl env2 -from bash -to modulecmd "/opt/intel/composer_xe_2013.2.146/bin/compilervars.sh intel64" >> intel_compiler 
+
+
+
+
+

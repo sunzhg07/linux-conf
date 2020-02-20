@@ -1,0 +1,16 @@
+#%Module
+
+module-whatis   "Sets up the HDF5 environment."
+
+
+# List prerequisites
+#prereq gcc-8.3
+
+# It's real simple.  Append to the PATH and to the MANPATH.
+set topdir /opt/Develop/GNU/hdf5
+
+setenv HDF5_DIR $topdir
+prepend-path PATH $topdir/bin
+prepend-path LD_LIBRARY_PATH $topdir/lib
+prepend-path LIBRARY_PATH $topdir/lib
+prepend-path CPATH $topdir/include

@@ -1,0 +1,28 @@
+#%Module -*- tcl -*-
+#
+# GCC compiler modules file
+# 
+
+proc ModulesHelp {} {
+               puts stderr "\tThis module configures your environment for Gnu compilers"
+}
+set version 9.2
+
+module-whatis   "GCC $version"
+conflict gcc intel
+
+set basedir /opt/Develop/GNU
+set topdir $basedir/gcc-$version
+
+setenv          CC              $topdir/bin/gcc
+setenv          GCC             $topdir/bin/gcc
+setenv          CXX             $topdir/bin/c++
+setenv          CPP             $topdir/bin/cpp
+setenv          FC              $topdir/bin/gfortran
+setenv          F77             $topdir/bin/gfortran
+setenv          F90             $topdir/bin/gfortran
+prepend-path    PATH            $topdir/include
+prepend-path    PATH            $topdir/bin
+prepend-path    MANPATH         $topdir/man
+prepend-path    LD_LIBRARY_PATH $topdir/lib64
+

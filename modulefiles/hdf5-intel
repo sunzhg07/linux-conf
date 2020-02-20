@@ -1,0 +1,15 @@
+#%Module
+
+module-whatis   "Sets up the HDF5 environment."
+
+
+# List prerequisites
+
+# It's real simple.  Append to the PATH and to the MANPATH.
+set topdir /opt/Develop/INTEL/hdf5
+
+setenv HDF5_DIR $topdir
+prepend-path PATH $topdir/bin
+prepend-path LD_LIBRARY_PATH $topdir/lib
+prepend-path LIBRARY_PATH $topdir/lib
+prepend-path CPATH $topdir/include
