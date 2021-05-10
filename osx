@@ -1,0 +1,6 @@
+ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include /usr/local/include to compile openmpi with intel oneapi
+
+export OMPI_CXX=g++-9
+export OMPI_CC=gcc-9
+export OMPI_FC=gfortran-9
+to kill the type missmatch check 
