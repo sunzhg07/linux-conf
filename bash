@@ -118,6 +118,13 @@ ex ()
 
 
 
+ export OMPI_MPICC=gcc-9
+ export OMPI_MPICXX=g++-9
+ export OMPI_MPIFC=gfortran-9
+ export OMPI_MPIF90=gfortran-9
+ 
+ 
+
 
 source /usr/local/Modules/init/bash
 module use /opt/modulefiles
