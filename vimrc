@@ -57,6 +57,8 @@ let fortran_do_enddo=1
 
 call plug#begin('~/.vim/plugged')
 Plug 'dense-analysis/ale'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 
@@ -67,16 +69,16 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 
 function! LinterStatus() abort
-	let l:counts = ale#statusline#Count(bufnr(''))
+        let l:counts = ale#statusline#Count(bufnr(''))
 
-	let l:all_errors = l:counts.error + l:counts.style_error
-	let l:all_non_errors = l:counts.total - l:all_errors
+        let l:all_errors = l:counts.error + l:counts.style_error
+        let l:all_non_errors = l:counts.total - l:all_errors
 
-	return l:counts.total == 0 ? 'OK' : printf(
-				\   '%dW %dE',
-				\   all_non_errors,
-				\   all_errors
-				\)
+        return l:counts.total == 0 ? 'OK' : printf(
+                                \   '%dW %dE',
+                                \   all_non_errors,
+                                \   all_errors
+                                \)
 endfunction
 
 set statusline+=%=
@@ -95,15 +97,15 @@ let g:ale_lint_on_text_changed = 'normal'  " 防止YCM不停补全
 let g:ale_lint_on_insert_leave = 1
 
 let g:ale_linters = {
-			\   'c++': ['g++'],
-			\   'c': ['gcc'],
-			\   'fortran' : ['gfortran'],
-			\   'python': ['pylint'],
-			\}
+                        \   'c++': ['g++'],
+                        \   'c': ['gcc'],
+                        \   'fortran' : ['gfortran'],
+                        \   'python': ['pylint'],
+                        \}
 
 let g:ale_fortran_gcc_use_free_form = 1
 let g:ale_fortran_gcc_executable = 'gfortran'
-let g:ale_fortran_gcc_options = '-Og -g -fbounds-check  -Wall -Wextra -ftrapv -fcheck=all  -Wuninitialized'
+let g:ale_fortran_gcc_options = '-Og -g -fbounds-check  -Wall -Wextra -ftrapv -fcheck=all  -Wuninitialized -I/home/wolf/work/smcc_opt/cc'
 let g:ale_fortran_language_server_executable = 'fortls --lowercase_intrinsics --max_line_length=80'
 " ALE
 let b:ale_linters = ['prospector', 'pyflakes', 'flake8', 'pylint', 'proselint', 'textlint', 'clang', 'clangcheck', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'gcc' ]
@@ -114,3 +116,7 @@ let g:ale_set_quickfix = 0
 let g:ale_open_list = 1
 " default is 10
 let g:ale_list_window_size = 5
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
