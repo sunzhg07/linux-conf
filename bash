@@ -124,7 +124,7 @@ ex ()
  export OMPI_MPIF90=gfortran-9
  
  
-
+export HWLOC_COMPONENTS=-x86
 
 source /usr/local/Modules/init/bash
 module use /opt/modulefiles
