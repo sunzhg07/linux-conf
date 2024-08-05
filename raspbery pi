@@ -1,0 +1,5 @@
+to renew the cert
+
+sudo certbot certonly --manual -d '*.swalk.xyz'  -d swalk.xyz
+
+
